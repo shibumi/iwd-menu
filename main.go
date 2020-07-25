@@ -38,7 +38,9 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	activeStation.Scan(conn)
+	if err := activeStation.Scan(conn); err != nil {
+		log.Fatalln(err)
+	}
 	openNetworks := map[int]iwd.Network{}
 	var index int = 0
 	for _, network := range daemon.Networks {
